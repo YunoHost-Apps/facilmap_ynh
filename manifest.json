@@ -1,0 +1,106 @@
+{
+    "name": "Facilmap",
+    "id": "facilmap",
+    "packaging_format": 1,
+    "description": {
+        "en": "Collaborative maps and routing with a straightforward interface",
+        "fr": "Carte collaborative avec une interface simple et pratique"
+    },
+    "version": "3.0.0~ynh1",
+    "url": "https://github.com/FacilMap/facilmap2",
+    "license": "AGPL-3.0",
+    "maintainer": {
+      "name": "Squeak",
+      "email": "squeak@eauchat.org",
+      "url": "https://squeak.eauchat.org"
+    },
+    "requirements": {
+        "yunohost": ">= 4.1.3"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "mysql"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "example": "example.com"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "example": "/example",
+                "default": "/example"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "default": true
+            },
+            {
+              "name": "tokens_info",
+              "type": "display_text",
+              "ask": {
+                "en": "The following questions concern tokens of accounts to external services in order for facilmap to work. Some are optional and just improve the facilmap experience. You will need to subscribe to the services to create accounts in order to be able to have those tokens.",
+                "fr": "Les questions qui suivent concernent les tokens associés à des comptes liés à des services externes auxquels vous devriez souscrire en tant qu'administrateur de facilmap. Certains sont optionels et permettent simplement d'améliorer l'expérience de facilmap. Pour obtenir ces tokens, vous devrez créer des comptes chez les services correspondants."
+              }
+            },
+            {
+                "name": "osr_token",
+                "type": "password",
+                "help": {
+                    "en": "OpenRouteService is used for calculating routes with advanced settings. You can get a token on https://go.openrouteservice.org/",
+                    "fr": "OpenRouteService est utilisé pour calculer les routes complexes. Vous pouvez obtenir un token ici: https://go.openrouteservice.org/"
+                }
+            },
+            {
+                "name": "mapbox_token",
+                "type": "password",
+                "help": {
+                    "en": "MapBox is used for calculating routes with simple settings. You can get an API key on https://www.mapbox.com/signup/",
+                    "fr": "MapBox est utilisé pour calcluer les routes simples. Vous pouvez obtenir une clé API ici: https://www.mapbox.com/signup/"
+                }
+            },
+            {
+                "name": "mapzen_token",
+                "type": "password",
+                "help": {
+                    "en": "MapZen is used for getting elevation information. You can get an API key on https://mapzen.com/developers/sign_up",
+                    "fr": "MapZen est utilisé pour obtenir les informations d'élévation. Vous pouvez obtenir une clé API ici: https://mapzen.com/developers/sign_up"
+                },
+                "optional": true
+            },
+            {
+                "name": "maxmind_user_id",
+                "type": "string",
+                "help": {
+                    "en": "Maxmind configuration. If specified, the maxmind GeoLite2 database will be downloaded for Geo IP lookup (to show the initial map state) and kept in memory. Sign up here: https://www.maxmind.com/en/geolite2/signup",
+                    "fr": "Configuration maxmind. Si vous spécifiez ce champ et le prochain, la base de donnée maxmind GeoLite2 sera téléchargée puis gardée en mémoire, pour localiser les addresse IP (afin que le chargement de la carte se fasse centré là où l'utilisateur est). Vous pouvez créer un compte ici: https://www.maxmind.com/en/geolite2/signup"
+                },
+                "optional": true
+            },
+            {
+                "name": "maxmind_license_key",
+                "type": "password",
+                "help": {
+                    "en": "License key associated to the maxmind user id you specified.",
+                    "fr": "La clé de license associée à l'utilisateur maxmind que vous avez spécifié."
+                },
+                "optional": true
+            },
+            {
+                "name": "user_agent",
+                "type": "string",
+                "help": {
+                    "en": "HTTP requests made by the backend will send this User-Agent header. Fill here the url facilmap will have and your e-mail address.",
+                    "fr": "Les requêtes faites par le serveur enveront cette entête User-agent. Remplissez ici l'url de votre instance facilmap et votre adresse email."
+                },
+                "optional": true,
+                "example": "FacilMap (https://facilmap.org/, cdauth@cdauth.eu)"
+            }
+        ]
+    }
+}

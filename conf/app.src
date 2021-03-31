@@ -1,0 +1,7 @@
+SOURCE_URL=https://github.com/FacilMap/facilmap2/archive/refs/heads/typescript.tar.gz
+SOURCE_SUM=aaca023b09ff783098e700d04007be6d27cb4ba36fa7dbd56906b6151f157f9a
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=
+SOURCE_EXTRACT=true
