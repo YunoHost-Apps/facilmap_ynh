@@ -1,5 +1,7 @@
 # App exemple pour YunoHost
 
+⚠️ Ce paquet n'est pas encore prêt et encore en développement, utilisez le à vos risques et périls, et **NON** dans un serveur en production.
+
 [![Niveau d'intégration](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)  
 [![Installer facilmap avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
@@ -53,6 +55,7 @@ Aucun login ou compte n'est nécessaire pour utiliser l'application, elle est ut
  * Site web YunoHost : https://yunohost.org/
 
 ---
+
 
 ## Informations pour les développeurs
 
