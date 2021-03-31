@@ -97,7 +97,7 @@ ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_script_progression --message="Making sure dedicated system user exists..." --time --weight=1
 
 # Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
+ynh_system_user_create --username=$app --home_dir="/home/$app/"
 
 #=================================================
 # SPECIFIC UPGRADE
