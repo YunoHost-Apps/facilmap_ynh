@@ -6,8 +6,8 @@
         "en": "Collaborative maps and routing with a straightforward interface",
         "fr": "Carte collaborative avec une interface simple et pratique"
     },
-    "version": "3.0.0~ynh1",
-    "url": "https://github.com/FacilMap/facilmap2",
+    "version": "3.0.1~ynh1",
+    "url": "https://github.com/FacilMap/facilmap",
     "license": "AGPL-3.0",
     "maintainer": {
       "name": "Squeak",
