@@ -54,8 +54,7 @@
                 "help": {
                     "en": "OpenRouteService is used for calculating routes with advanced settings. You can get a token on https://go.openrouteservice.org/",
                     "fr": "OpenRouteService est utilisé pour calculer les routes complexes. Vous pouvez obtenir un token ici: https://go.openrouteservice.org/"
-                },
-                "optional": true
+                }
             },
             {
                 "name": "mapbox_token",
@@ -63,8 +62,7 @@
                 "help": {
                     "en": "MapBox is used for calculating routes with simple settings. You can get an API key on https://www.mapbox.com/signup/",
                     "fr": "MapBox est utilisé pour calcluer les routes simples. Vous pouvez obtenir une clé API ici: https://www.mapbox.com/signup/"
-                },
-                "optional": true
+                }
             },
             {
                 "name": "mapzen_token",
