@@ -6,8 +6,8 @@
         "en": "Collaborative maps and routing with a straightforward interface",
         "fr": "Carte collaborative avec une interface simple et pratique"
     },
-    "version": "3.0.0~ynh1",
-    "url": "https://github.com/FacilMap/facilmap2",
+    "version": "3.0.1~ynh1",
+    "url": "https://github.com/FacilMap/facilmap",
     "license": "AGPL-3.0",
     "maintainer": {
       "name": "Squeak",
@@ -50,7 +50,7 @@
             },
             {
                 "name": "osr_token",
-                "type": "password",
+                "type": "string",
                 "help": {
                     "en": "OpenRouteService is used for calculating routes with advanced settings. You can get a token on https://go.openrouteservice.org/",
                     "fr": "OpenRouteService est utilisé pour calculer les routes complexes. Vous pouvez obtenir un token ici: https://go.openrouteservice.org/"
@@ -58,7 +58,7 @@
             },
             {
                 "name": "mapbox_token",
-                "type": "password",
+                "type": "string",
                 "help": {
                     "en": "MapBox is used for calculating routes with simple settings. You can get an API key on https://www.mapbox.com/signup/",
                     "fr": "MapBox est utilisé pour calcluer les routes simples. Vous pouvez obtenir une clé API ici: https://www.mapbox.com/signup/"
@@ -66,7 +66,7 @@
             },
             {
                 "name": "mapzen_token",
-                "type": "password",
+                "type": "string",
                 "help": {
                     "en": "MapZen is used for getting elevation information. You can get an API key on https://mapzen.com/developers/sign_up",
                     "fr": "MapZen est utilisé pour obtenir les informations d'élévation. Vous pouvez obtenir une clé API ici: https://mapzen.com/developers/sign_up"
@@ -98,8 +98,7 @@
                     "en": "HTTP requests made by the backend will send this User-Agent header. Fill here the url facilmap will have and your e-mail address.",
                     "fr": "Les requêtes faites par le serveur enveront cette entête User-agent. Remplissez ici l'url de votre instance facilmap et votre adresse email."
                 },
-                "optional": true,
-                "example": "FacilMap (https://facilmap.org/, cdauth@cdauth.eu)"
+                "example": "FacilMap (https://facilmap.org/, webmaster@example.org)"
             }
         ]
     }

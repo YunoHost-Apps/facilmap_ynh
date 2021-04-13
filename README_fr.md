@@ -1,4 +1,4 @@
-# App exemple pour YunoHost
+# FacilMap pour YunoHost
 
 ⚠️ Ce paquet n'est pas encore prêt et encore en développement, utilisez le à vos risques et périls, et **NON** dans un serveur en production.
 
@@ -13,11 +13,9 @@ Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install
 
 ## Vue d'ensemble
 
-> FacilMap est une carte interractive en ligne qui regroupe de nombreuses fonctionalités dans une interface simple. FacilMap est baseé sur les données libre de OpenStreetMap.
+[FacilMap](https://github.com/FacilMap/facilmap) est une carte interactive polyvalente, libre et respectueuse de la vie privée qui regroupe des nombreux services basés sur les données libres de OpenStreetMap. FacilMap permet de naviguer, chercher et dessiner facilement des trajets, créer des cartes collaboratives qui peuvent être éditées par plusieurs personnes simultanément, similairement à ce qu'[Etherpad](http://etherpad.org/) propose pour l'édition collaborative de texte.
 
-FacilMap permet de naviguer, chercher et dessiner facilement des trajets, créer des cartes collaboratives qui peuvent être éditées par plusieurs personnes simultanément, similairement à ce qu'[Etherpad](http://etherpad.org/) propose pour l'édition collaborative de texte.
-
-**Version incluse :** 3.0.0
+**Version incluse :** 3.0.1
 
 
 ## Captures d'écran
@@ -27,12 +25,12 @@ FacilMap permet de naviguer, chercher et dessiner facilement des trajets, créer
 
 ## Démo
 
-* [Démo officielle](https://facilmap.org)
+* [Démo officielle](https://facilmap.org/)
 
 
 ## Documentation
 
- * Documentation officielle (en Anglais) : https://github.com/FacilMap/facilmap2
+ * Documentation officielle (en Anglais) : https://docs.facilmap.org/
 
 
 ## Caractéristiques spécifiques YunoHost
