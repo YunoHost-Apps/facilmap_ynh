@@ -31,7 +31,7 @@ is_public=$YNH_APP_ARG_IS_PUBLIC
 user_agent="$YNH_APP_ARG_USER_AGENT"
 
 # APIS TOKENS
-osr_token="$YNH_APP_ARG_OSR_TOKEN"
+ors_token="$YNH_APP_ARG_ORS_TOKEN"
 mapbox_token="$YNH_APP_ARG_MAPBOX_TOKEN"
 mapzen_token="$YNH_APP_ARG_MAPZEN_TOKEN"
 maxmind_user_id="$YNH_APP_ARG_MAXMIND_USER_ID"
@@ -58,7 +58,7 @@ ynh_script_progression --message="Storing installation settings..." --weight=1
 ynh_app_setting_set --app=$app --key=domain --value=$domain
 ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=user_agent --value=$user_agent
-ynh_app_setting_set --app=$app --key=osr_token --value=$osr_token
+ynh_app_setting_set --app=$app --key=ors_token --value=$ors_token
 ynh_app_setting_set --app=$app --key=mapbox_token --value=$mapbox_token
 ynh_app_setting_set --app=$app --key=mapzen_token --value=$mapzen_token
 ynh_app_setting_set --app=$app --key=maxmind_user_id --value=$maxmind_user_id
@@ -97,9 +97,6 @@ ynh_script_progression --message="Installing NodeJS..." --time --weight=15
 
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
-# Install Yarn
-ynh_install_extra_app_dependencies --repo="deb https://dl.yarnpkg.com/debian/ stable main" --package="yarn" --key="https://dl.yarnpkg.com/debian/pubkey.gpg"
-
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
@@ -107,21 +104,19 @@ ynh_script_progression --message="Creating a MySQL database..." --time --weight=
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
+db_pwd= # Will be set by facilmap_create_db
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
-echo "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci" | ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name
+facilmap_create_db
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --time --weight=1
+#ynh_script_progression --message="Setting up source files..." --time --weight=1
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-# Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$final_path"
 
-# Remove docs, they are not needed and take a lot of space
-rm -rf "$final_path/docs"
+# Download, check integrity, uncompress and patch the source from app.src
+#ynh_setup_source --dest_dir="$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -137,7 +132,7 @@ ynh_add_nginx_config
 ynh_script_progression --message="Configuring system user..." --time --weight=1
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir="/home/$app"
+facilmap_create_user
 
 #=================================================
 # SPECIFIC SETUP
@@ -146,13 +141,7 @@ ynh_system_user_create --username=$app --home_dir="/home/$app"
 #=================================================
 ynh_script_progression --message="Building node dependencies..." --time --weight=1
 
-chown -R "$app":"$app" $final_path
-
-pushd "$final_path"
-	ynh_use_nodejs
-	sudo -u $app env $ynh_node_load_PATH yarn install
-	sudo -u $app env $ynh_node_load_PATH yarn build
-popd
+facilmap_install_app
 
 #=================================================
 # SETUP SYSTEMD
@@ -166,7 +155,7 @@ ynh_add_systemd_config --others_var="ynh_node_load_PATH"
 # ADD A CONFIGURATION
 #=================================================
 
-ynh_add_config --template="../conf/config.env" --destination="$final_path/config.env"
+facilmap_add_config
 
 #=================================================
 # GENERIC FINALIZATION
@@ -174,8 +163,8 @@ ynh_add_config --template="../conf/config.env" --destination="$final_path/config
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
-# Make only server/cache subdirectory accessible to facilmap to write
-chown -R root:root $final_path && chown -R $app:$app $final_path/server/cache
+# Set permissions on app files
+facilmap_set_permissions
 
 #=================================================
 # SETUP LOGROTATE
