@@ -47,7 +47,7 @@ Aucun login ou compte n'est nécessaire pour utiliser l'application, elle est ut
 
  * Signaler un bug : https://github.com/YunoHost-Apps/facilmap_ynh/issues
  * Site de l'application : https://facilmap.org
- * Dépôt de l'application principale : https://github.com/FacilMap/facilmap2
+ * Dépôt de l'application principale : https://github.com/FacilMap/facilmap
  * Site web YunoHost : https://yunohost.org/
 
 ---

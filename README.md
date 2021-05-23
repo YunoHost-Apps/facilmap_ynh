@@ -47,7 +47,7 @@ The app doesn't require any login, anyone can use it, unless you install it priv
 
  * Report a bug: https://github.com/YunoHost-Apps/facilmap_ynh/issues
  * App website: https://facilmap.org
- * Upstream app repository: https://github.com/FacilMap/facilmap2
+ * Upstream app repository: https://github.com/FacilMap/facilmap
  * YunoHost website: https://yunohost.org/
 
 ---
