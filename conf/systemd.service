@@ -5,11 +5,12 @@ After=network.target
 [Service]
 Type=simple
 Environment=NODE_ENV=production
+Environment=DOTENV_CONFIG_PATH=__FINALPATH__/etc/facilmap.env
 User=__APP__
 Group=__APP__
 Environment="__YNH_NODE_LOAD_PATH__"
-ExecStart=/bin/sh -c ' yarn server'
-WorkingDirectory=__FINALPATH__/server/
+ExecStart=__FINALPATH__/bin/facilmap-server
+WorkingDirectory=__FINALPATH__
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=__APP__
