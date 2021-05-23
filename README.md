@@ -1,7 +1,5 @@
 # FacilMap for YunoHost
 
-⚠️ This package is not ready, and still in development, only install at your own risks and **NOT** in a production server.
-
 [![Integration level](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)  
 [![Install facilmap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
@@ -15,7 +13,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 [FacilMap](https://github.com/FacilMap/facilmap) is a privacy-friendly, open-source versatile online map that combines different services based on OpenStreetMap and makes it easy to find places, plan routes and create custom maps full of markers, lines and routes, allowing live collaboration. Think of it like [Etherpad](https://etherpad.org/), just for maps.
 
-**Shipped version:** 3.0.1
+**Shipped version:** 3.1.0
 
 
 ## Screenshots
