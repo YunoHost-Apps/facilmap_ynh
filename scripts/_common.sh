@@ -9,7 +9,7 @@ pkg_dependencies=""
 
 nodejs_version=14
 
-facilmap_version=3.1.0
+facilmap_version=3.3.0
 
 #=================================================
 # PERSONAL HELPERS
