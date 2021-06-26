@@ -93,7 +93,6 @@ ynh_script_progression --message="Removing the dedicated system user..." --weigh
 
 # Delete a system user
 ynh_system_user_delete --username=$app
-ynh_secure_remove --file="/home/$app/"
 
 #=================================================
 # END OF SCRIPT
