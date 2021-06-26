@@ -15,7 +15,7 @@
       "url": "https://squeak.eauchat.org"
     },
     "requirements": {
-        "yunohost": ">= 4.1.7"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": true,
     "services": [
