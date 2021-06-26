@@ -62,16 +62,12 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
 
 #=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
+# CREATE DEDICATED USER
 #=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
 
-#if [ "$upgrade_type" == "UPGRADE_APP" ]
-#then
-#	ynh_script_progression --message="Upgrading source files..." --weight=5
-#
-#	# Download, check integrity, uncompress and patch the source from app.src
-#	ynh_setup_source --dest_dir="$final_path"
-#fi
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -87,30 +83,22 @@ ynh_add_nginx_config
 ynh_script_progression --message="Upgrading dependencies..." --weight=10
 
 ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# UPGRADE NODEJS
-#=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=40
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-facilmap_create_user
 
 #=================================================
 # SPECIFIC UPGRADE
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Building node dependencies..." --weight=70
+ynh_script_progression --message="Install $app..." --weight=20
 
-facilmap_install_app
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	chown -R $app $final_path
+	pushd $final_path
+		ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$final_path" -g facilmap-server@"$facilmap_version" 2>/dev/null
+	popd
+fi
 
 #=================================================
 # SETUP SYSTEMD
@@ -118,14 +106,15 @@ facilmap_install_app
 ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
 
 # Create a dedicated systemd config
-ynh_add_systemd_config --others_var="ynh_node_load_PATH"
+ynh_add_systemd_config
 
 #=================================================
 # UPDATE A CONFIG FILE
 #=================================================
 ynh_script_progression --message="Updating config files..." --weight=2
 
-facilmap_add_config
+mkdir -p "$final_path/etc"
+ynh_add_config --template="../conf/config.env" --destination="$final_path/etc/facilmap.env"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -135,7 +124,9 @@ facilmap_add_config
 ynh_script_progression --message="Setting files permissions..." --weight=1
 
 # Set permissions on app files
-facilmap_set_permissions
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # SETUP LOGROTATE
@@ -150,7 +141,7 @@ ynh_use_logrotate --non-append
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add $app --description="Collaborative maps and routing with a straightforward interface" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Collaborative maps and routing" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE

@@ -58,12 +58,6 @@ ynh_script_progression --message="Removing dependencies..." --weight=3
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
-
-#=================================================
-# REMOVE NODEJS
-#=================================================
-ynh_script_progression --message="Removing NodeJS version for facilmap..." --weight=4
-
 ynh_remove_nodejs
 
 #=================================================
@@ -91,16 +85,6 @@ ynh_script_progression --message="Removing logrotate configuration..." --weight=
 ynh_remove_logrotate
 
 #=================================================
-# SPECIFIC REMOVE
-#=================================================
-# REMOVE VARIOUS FILES
-#=================================================
-ynh_script_progression --message="Removing log files..." --weight=1
-
-# Remove the log files
-ynh_secure_remove --file="/var/log/$app/"
-
-#=================================================
 # GENERIC FINALIZATION
 #=================================================
 # REMOVE DEDICATED USER
@@ -109,7 +93,6 @@ ynh_script_progression --message="Removing the dedicated system user..." --weigh
 
 # Delete a system user
 ynh_system_user_delete --username=$app
-ynh_secure_remove --file="/home/$app/"
 
 #=================================================
 # END OF SCRIPT
