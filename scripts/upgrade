@@ -95,7 +95,6 @@ ynh_add_nginx_config
 ynh_script_progression --message="Upgrading dependencies..." --weight=10
 
 ynh_install_app_dependencies $pkg_dependencies
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
@@ -110,7 +109,6 @@ chown -R $app $final_path
 pushd "$final_path"
 	ynh_exec_as "$app" "$ynh_node_load_PATH" "$ynh_npm" install --prefix "$final_path" -g facilmap-server@"$facilmap_version"
 popd
-
 
 #=================================================
 # SETUP SYSTEMD

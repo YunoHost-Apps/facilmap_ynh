@@ -58,12 +58,6 @@ ynh_script_progression --message="Removing dependencies..." --weight=3
 
 # Remove metapackage and its dependencies
 ynh_remove_app_dependencies
-
-#=================================================
-# REMOVE NODEJS
-#=================================================
-ynh_script_progression --message="Removing NodeJS version for facilmap..." --weight=4
-
 ynh_remove_nodejs
 
 #=================================================
