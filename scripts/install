@@ -33,7 +33,6 @@ user_agent="$YNH_APP_ARG_USER_AGENT"
 # APIS TOKENS
 ors_token="$YNH_APP_ARG_ORS_TOKEN"
 mapbox_token="$YNH_APP_ARG_MAPBOX_TOKEN"
-mapzen_token="$YNH_APP_ARG_MAPZEN_TOKEN"
 maxmind_user_id="$YNH_APP_ARG_MAXMIND_USER_ID"
 maxmind_license_key="$YNH_APP_ARG_MAXMIND_LICENSE_KEY"
 
@@ -60,7 +59,6 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=user_agent --value=$user_agent
 ynh_app_setting_set --app=$app --key=ors_token --value=$ors_token
 ynh_app_setting_set --app=$app --key=mapbox_token --value=$mapbox_token
-ynh_app_setting_set --app=$app --key=mapzen_token --value=$mapzen_token
 ynh_app_setting_set --app=$app --key=maxmind_user_id --value=$maxmind_user_id
 ynh_app_setting_set --app=$app --key=maxmind_license_key --value=$maxmind_license_key
 

@@ -28,7 +28,6 @@ db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 user_agent=$(ynh_app_setting_get --app=$app --key=user_agent)
 ors_token=$(ynh_app_setting_get --app=$app --key=ors_token)
 mapbox_token=$(ynh_app_setting_get --app=$app --key=mapbox_token)
-mapzen_token=$(ynh_app_setting_get --app=$app --key=mapzen_token)
 maxmind_user_id=$(ynh_app_setting_get --app=$app --key=maxmind_user_id)
 maxmind_license_key=$(ynh_app_setting_get --app=$app --key=maxmind_license_key)
 

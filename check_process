@@ -5,7 +5,6 @@
 		is_public=1
 		ors_token="test"
 		mapbox_token="test"
-		mapzen_token="test"
 		maxmind_user_id=""
 		maxmind_license_key=""
 		user_agent="FacilMap (https://facilmap.org/, webmaster@example.org)"
