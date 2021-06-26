@@ -107,7 +107,7 @@ ynh_script_progression --message="Building node dependencies..." --weight=20
 chown -R $app $final_path
 
 pushd "$final_path"
-	ynh_exec_as "$app" "$ynh_node_load_PATH" "$ynh_npm" install --prefix "$final_path" -g facilmap-server@"$facilmap_version"
+	ynh_exec_as "$app" "$ynh_node_load_PATH" "$ynh_npm" install --prefix "$final_path" -g facilmap-server@"$facilmap_version" 2>/dev/null
 popd
 
 #=================================================

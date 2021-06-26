@@ -128,7 +128,7 @@ mkdir -p $final_path
 chown -R $app $final_path
 
 pushd $final_path
-	ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$final_path" -g facilmap-server@"$facilmap_version"
+	ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$final_path" -g facilmap-server@"$facilmap_version" 2>/dev/null
 popd
 
 chmod 750 "$final_path"
