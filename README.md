@@ -23,7 +23,7 @@ Collaborative maps and routing with a straightforward interface
 
 ## Screenshots
 
-![](./doc/screenshots/68747470733a2f2f77696b692e6f70656e7374726565746d61702e6f72672f772f696d616765732f372f37612f466163696c4d61702e706e67.png)
+![](./doc/screenshots/screenshot.png)
 
 ## Documentation and resources
 
