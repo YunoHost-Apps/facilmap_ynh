@@ -1,6 +1,3 @@
-# See here for more information
-# https://github.com/YunoHost/package_check#syntax-check_process-file
-
 ;; Test complet
 	; Manifest
 		domain="domain.tld"
@@ -8,7 +5,6 @@
 		is_public=1
 		ors_token="test"
 		mapbox_token="test"
-		mapzen_token="test"
 		maxmind_user_id=""
 		maxmind_license_key=""
 		user_agent="FacilMap (https://facilmap.org/, webmaster@example.org)"
@@ -22,7 +18,6 @@
 		upgrade=1
 		backup_restore=1
 		multi_instance=1
-		port_already_use=0
 		change_url=1
 ;;; Options
 Email=squeak@eauchat.org

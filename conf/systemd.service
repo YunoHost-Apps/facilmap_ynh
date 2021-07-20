@@ -1,13 +1,13 @@
 [Unit]
-Description=Facilmap: collaborative maps with a straightforward interface
+Description=Facilmap: collaborative maps
 After=network.target
 
 [Service]
 Type=simple
-Environment=NODE_ENV=production
-Environment=DOTENV_CONFIG_PATH=__FINALPATH__/etc/facilmap.env
 User=__APP__
 Group=__APP__
+Environment=NODE_ENV=production
+Environment=DOTENV_CONFIG_PATH=__FINALPATH__/etc/facilmap.env
 Environment="__YNH_NODE_LOAD_PATH__"
 ExecStart=__FINALPATH__/bin/facilmap-server
 WorkingDirectory=__FINALPATH__

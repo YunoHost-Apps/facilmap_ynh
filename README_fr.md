@@ -1,61 +1,37 @@
-# FacilMap pour YunoHost
+# Facilmap pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)  
-[![Installer facilmap avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
+[![Installer Facilmap avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
 *[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer facilmap rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install) pour apprendre comment l'installer.*
-
+> *Ce package vous permet d'installer Facilmap rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
 ## Vue d'ensemble
 
-[FacilMap](https://github.com/FacilMap/facilmap) est une carte interactive polyvalente, libre et respectueuse de la vie privée qui regroupe des nombreux services basés sur les données libres de OpenStreetMap. FacilMap permet de naviguer, chercher et dessiner facilement des trajets, créer des cartes collaboratives qui peuvent être éditées par plusieurs personnes simultanément, similairement à ce qu'[Etherpad](http://etherpad.org/) propose pour l'édition collaborative de texte.
+Carte collaborative avec une interface simple et pratique
 
-**Version incluse :** 3.1.0
+**Version incluse :** 3.3.0~ynh1
 
+**Démo :** https://facilmap.org/
 
 ## Captures d'écran
 
-![](https://wiki.openstreetmap.org/w/images/7/7a/FacilMap.png)
+![](./doc/screenshots/screenshot.png)
 
+## Documentations et ressources
 
-## Démo
-
-* [Démo officielle](https://facilmap.org/)
-
-
-## Documentation
-
- * Documentation officielle (en Anglais) : https://docs.facilmap.org/
-
-
-## Caractéristiques spécifiques YunoHost
-
-#### Support multi-utilisateur
-
-Aucun login ou compte n'est nécessaire pour utiliser l'application, elle est utilisable par n'importe qui, à moins de l'installer de manière privée.
-
-#### Architectures supportées
-
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/facilmap%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/facilmap/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/facilmap%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/facilmap/)
-
-
-## Liens
-
- * Signaler un bug : https://github.com/YunoHost-Apps/facilmap_ynh/issues
- * Site de l'application : https://facilmap.org
- * Dépôt de l'application principale : https://github.com/FacilMap/facilmap
- * Site web YunoHost : https://yunohost.org/
-
----
-
+* Site officiel de l'app : https://facilmap.org/
+* Documentation officielle utilisateur : https://docs.facilmap.org/users/
+* Documentation officielle de l'admin : https://docs.facilmap.org/developers/
+* Dépôt de code officiel de l'app : https://github.com/FacilMap/facilmap
+* Documentation YunoHost pour cette app : https://yunohost.org/app_facilmap
+* Signaler un bug : https://github.com/YunoHost-Apps/facilmap_ynh/issues
 
 ## Informations pour les développeurs
 
-**Seulement si vous voulez utiliser une branche de test pour le codage, au lieu de fusionner directement dans la banche principale.**
 Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/facilmap_ynh/tree/testing).
 
 Pour essayer la branche testing, procédez comme suit.
@@ -64,3 +40,5 @@ sudo yunohost app install https://github.com/YunoHost-Apps/facilmap_ynh/tree/tes
 ou
 sudo yunohost app upgrade facilmap -u https://github.com/YunoHost-Apps/facilmap_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps

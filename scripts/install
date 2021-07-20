@@ -33,7 +33,6 @@ user_agent="$YNH_APP_ARG_USER_AGENT"
 # APIS TOKENS
 ors_token="$YNH_APP_ARG_ORS_TOKEN"
 mapbox_token="$YNH_APP_ARG_MAPBOX_TOKEN"
-mapzen_token="$YNH_APP_ARG_MAPZEN_TOKEN"
 maxmind_user_id="$YNH_APP_ARG_MAXMIND_USER_ID"
 maxmind_license_key="$YNH_APP_ARG_MAXMIND_LICENSE_KEY"
 
@@ -60,7 +59,6 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_app_setting_set --app=$app --key=user_agent --value=$user_agent
 ynh_app_setting_set --app=$app --key=ors_token --value=$ors_token
 ynh_app_setting_set --app=$app --key=mapbox_token --value=$mapbox_token
-ynh_app_setting_set --app=$app --key=mapzen_token --value=$mapzen_token
 ynh_app_setting_set --app=$app --key=maxmind_user_id --value=$maxmind_user_id
 ynh_app_setting_set --app=$app --key=maxmind_license_key --value=$maxmind_license_key
 
@@ -80,21 +78,7 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=6
 
-### `ynh_install_app_dependencies` allows you to add any "apt" dependencies to the package.
-### Those deb packages will be installed as dependencies of this package.
-### If you're not using this helper:
-###		- Remove the section "REMOVE DEPENDENCIES" in the remove script
-###		- Remove the variable "pkg_dependencies" in _common.sh
-###		- As well as the section "REINSTALL DEPENDENCIES" in the restore script
-###		- And the section "UPGRADE DEPENDENCIES" in the upgrade script
-
 ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# INSTALL NODEJS
-#=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=30
-
 ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
@@ -104,19 +88,24 @@ ynh_script_progression --message="Creating a MySQL database..." --weight=2
 
 db_name=$(ynh_sanitize_dbid --db_name=$app)
 db_user=$db_name
-db_pwd= # Will be set by facilmap_create_db
+db_pwd=$(ynh_app_setting_get --app=$app --key=mysqlpwd)
 ynh_app_setting_set --app=$app --key=db_name --value=$db_name
-facilmap_create_db
+ynh_mysql_setup_db --db_user=$db_user --db_name=$db_name
+echo "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci" | ynh_mysql_connect_as --user=$db_user --password=$db_pwd --database=$db_name
+
+#=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..." --weight=1
+
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-#ynh_script_progression --message="Setting up source files..." --weight=100
+ynh_script_progression --message="Setting up source files..." --weight=100
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
-
-# Download, check integrity, uncompress and patch the source from app.src
-#ynh_setup_source --dest_dir="$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -127,21 +116,22 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=2
 ynh_add_nginx_config
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..." --weight=1
-
-# Create a system user
-facilmap_create_user
-
-#=================================================
 # SPECIFIC SETUP
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Building node dependencies..." --weight=200
 
-facilmap_install_app
+mkdir -p $final_path
+chown -R $app $final_path
+
+pushd $final_path
+	ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$final_path" -g facilmap-server@"$facilmap_version" 2>/dev/null
+popd
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
 
 #=================================================
 # SETUP SYSTEMD
@@ -149,24 +139,15 @@ facilmap_install_app
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
 
 # Create a dedicated systemd config
-ynh_add_systemd_config --others_var="ynh_node_load_PATH"
+ynh_add_systemd_config
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding configuration..." --weight=2
 
-facilmap_add_config
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Setting app files permissions.." --weight=2
-
-# Set permissions on app files
-facilmap_set_permissions
+mkdir -p $final_path/etc
+ynh_add_config --template="../conf/config.env" --destination="$final_path/etc/facilmap.env"
 
 #=================================================
 # SETUP LOGROTATE
@@ -181,7 +162,7 @@ ynh_use_logrotate
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add $app --description="Collaborative maps and routing with a straightforward interface" --log="/var/log/$app/$app.log"
+yunohost service add $app --description="Collaborative maps and routing" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -199,21 +180,8 @@ ynh_script_progression --message="Configuring app permissions..." --weight=2
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
-	# Everyone can access the app.
-	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission="main" --add="visitors"
 fi
-
-# ### N.B. : the following extra permissions only make sense if your app
-# ### does have for example an admin interface or an api.
-#
-# # Only the admin can access the admin panel of the app (if the app has an admin panel)
-# ynh_permission_create --permission="admin" --url="/admin" --allowed=$admin
-#
-# # Everyone can access to the api part
-# # We don't want to display the tile in the sso so we put --show_tile="false"
-# # And we don't want that the YunoHost Admin can remove visitors group to this permission, so we put --protected="true"
-# ynh_permission_create --permission="api" --url "/api" --allowed="visitors" --show_tile="false" --protected="true"
 
 #=================================================
 # RELOAD NGINX
