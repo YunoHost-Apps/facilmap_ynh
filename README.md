@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Collaborative maps and routing with a straightforward interface
 
-**Shipped version:** 3.3.0~ynh1
+**Shipped version:** 3.3.0~ynh2
 
 **Demo:** https://facilmap.org/
 
