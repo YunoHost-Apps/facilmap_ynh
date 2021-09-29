@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Carte collaborative avec une interface simple et pratique
 
-**Version incluse :** 3.3.0~ynh1
+**Version incluse :** 3.3.0~ynh2
 
 **Démo :** https://facilmap.org/
 
