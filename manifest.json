@@ -49,14 +49,6 @@
                 "default": true
             },
             {
-              "name": "tokens_info",
-              "type": "display_text",
-              "ask": {
-                "en": "The following questions concern tokens of accounts to external services in order for facilmap to work. Some are optional and just improve the facilmap experience. You will need to subscribe to the services to create accounts in order to be able to have those tokens.",
-                "fr": "Les questions qui suivent concernent les tokens associés à des comptes liés à des services externes auxquels vous devriez souscrire en tant qu'administrateur de facilmap. Certains sont optionels et permettent simplement d'améliorer l'expérience de facilmap. Pour obtenir ces tokens, vous devrez créer des comptes chez les services correspondants."
-              }
-            },
-            {
                 "name": "ors_token",
                 "type": "string",
                 "help": {
