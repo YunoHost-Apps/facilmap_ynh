@@ -102,7 +102,7 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=100
+ynh_script_progression --message="Setting up source files..." --weight=10
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 
@@ -119,7 +119,7 @@ ynh_add_nginx_config
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Building node dependencies..." --weight=200
+ynh_script_progression --message="Building node dependencies..." --weight=20
 
 mkdir -p $final_path
 chown -R $app $final_path
