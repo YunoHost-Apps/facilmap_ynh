@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Facilmap for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![Working status](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![Working status](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
 [![Install Facilmap with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Collaborative maps and routing with a straightforward interface
 
-**Shipped version:** 3.4.0~ynh1
+**Shipped version:** 3.4.0~ynh2
 
 **Demo:** https://facilmap.org/
 
