@@ -1,0 +1,13 @@
+test_format = 1.0
+
+[default]
+
+    # -------------------------------
+    # Default args to use for install
+    # -------------------------------
+
+	ors_token = "test"
+	mapbox_token = "test"
+	maxmind_user_id = ""
+	maxmind_license_key = ""
+	user_agent = "FacilMap (https://facilmap.org/, webmaster@example.org)"
