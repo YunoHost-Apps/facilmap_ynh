@@ -39,11 +39,6 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
-    [install.tokens_info]
-    ask.en = "The following questions concern tokens of accounts to external services in order for facilmap to work. Some are optional and just improve the facilmap experience. You will need to subscribe to the services to create accounts in order to be able to have those tokens."
-    ask.fr = "Les questions qui suivent concernent les tokens associés à des comptes liés à des services externes auxquels vous devriez souscrire en tant qu'administrateur de facilmap. Certains sont optionels et permettent simplement d'améliorer l'expérience de facilmap. Pour obtenir ces tokens, vous devrez créer des comptes chez les services correspondants."
-    type = "display_text"
-
     [install.ors_token]
     ask.en = "Fill in your OpenRouteService token"
     ask.fr = "Remplissez ici votre token OpenRouteService"
