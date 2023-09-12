@@ -25,7 +25,7 @@ Cartes et itinéraires collaboratifs avec une interface simple.
 
 ## Captures d’écran
 
-![Capture d’écran de Facilmap](./doc/screenshots/screenshot.png)
+![Capture d’écran de Facilmap](./doc/screenshots/screenshot.webp)
 
 ## Documentations et ressources
 

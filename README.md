@@ -24,7 +24,7 @@ Collaborative maps and routing with a straightforward interface
 
 ## Screenshots
 
-![Screenshot of Facilmap](./doc/screenshots/screenshot.png)
+![Screenshot of Facilmap](./doc/screenshots/screenshot.webp)
 
 ## Documentation and resources
 
