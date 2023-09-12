@@ -16,7 +16,8 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Collaborative maps and routing with a straightforward interface
+Cartes et itinéraires collaboratifs avec une interface simple.
+
 
 **Version incluse :** 3.4.0~ynh2
 
