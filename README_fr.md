@@ -6,6 +6,7 @@ It shall NOT be edited by hand.
 # Facilmap pour YunoHost
 
 [![Niveau d’intégration](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
+
 [![Installer Facilmap avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
 *[Read this readme in english.](./README.md)*
@@ -31,7 +32,7 @@ Carte collaborative avec une interface simple et pratique
 * Documentation officielle utilisateur : <https://docs.facilmap.org/users/>
 * Documentation officielle de l’admin : <https://docs.facilmap.org/developers/>
 * Dépôt de code officiel de l’app : <https://github.com/FacilMap/facilmap>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_facilmap>
+* YunoHost Store: <https://apps.yunohost.org/app/facilmap>
 * Signaler un bug : <https://github.com/YunoHost-Apps/facilmap_ynh/issues>
 
 ## Informations pour les développeurs
