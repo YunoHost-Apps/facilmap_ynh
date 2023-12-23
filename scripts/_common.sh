@@ -18,9 +18,8 @@ facilmap_add_config() {
 }
 
 facilmap_set_permissions() {
-    chown -R root:root $final_path
+    chown -R $app:$app $final_path
     mkdir -p "$final_path/lib/node_modules/facilmap-server/cache"
-    chown -R facilmap:facilmap "$final_path/lib/node_modules/facilmap-server/cache"
 }
 
 facilmap_install_app() {
