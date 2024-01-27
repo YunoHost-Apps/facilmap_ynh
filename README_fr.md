@@ -16,7 +16,8 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Carte collaborative avec une interface simple et pratique
+Cartes et itinéraires collaboratifs avec une interface simple.
+
 
 **Version incluse :** 3.4.0~ynh2
 
@@ -24,7 +25,7 @@ Carte collaborative avec une interface simple et pratique
 
 ## Captures d’écran
 
-![Capture d’écran de Facilmap](./doc/screenshots/screenshot.png)
+![Capture d’écran de Facilmap](./doc/screenshots/screenshot.webp)
 
 ## Documentations et ressources
 
