@@ -1,0 +1,95 @@
+packaging_format = 2
+
+id = "facilmap"
+name = "Facilmap"
+description.en = "Collaborative maps and routing with a straightforward interface"
+description.fr = "Carte collaborative avec une interface simple et pratique"
+
+version = "3.4.0~ynh2"
+
+maintainers = ["Squeak"]
+
+[upstream]
+license = "AGPL-3.0"
+website = "https://facilmap.org/"
+demo = "https://facilmap.org/"
+admindoc = "https://docs.facilmap.org/developers/"
+userdoc = "https://docs.facilmap.org/users/"
+code = "https://github.com/FacilMap/facilmap"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/facilmap"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+    [install.ors_token]
+    ask.en = "Fill in your OpenRouteService token"
+    ask.fr = "Remplissez ici votre token OpenRouteService"
+    help.en = "OpenRouteService is used for calculating routes with advanced settings. You can get a token on https://openrouteservice.org/"
+    help.fr = "OpenRouteService est utilisé pour calculer les routes complexes. Vous pouvez obtenir un token ici: https://openrouteservice.org/"
+    type = "string"
+
+    [install.mapbox_token]
+    ask.en = "Fill in your MapBox token"
+    ask.fr = "Remplissez ici votre token MapBox"
+    help.en = "MapBox is used for calculating routes with simple settings. You can get an API key on https://www.mapbox.com/signup/"
+    help.fr = "MapBox est utilisé pour calcluer les routes simples. Vous pouvez obtenir une clé API ici : https://www.mapbox.com/signup/"
+    type = "string"
+
+    [install.maxmind_user_id]
+    ask.en = "Fill in your maxmind user id"
+    ask.fr = "Remplissez ici votre identifiant maxmind"
+    help.en = "Maxmind configuration. If specified, the maxmind GeoLite2 database will be downloaded for Geo IP lookup (to show the initial map state) and kept in memory. Sign up here: https://www.maxmind.com/en/geolite2/signup"
+    help.fr = "Configuration maxmind. Si vous spécifiez ce champ et le prochain, la base de donnée maxmind GeoLite2 sera téléchargée puis gardée en mémoire, pour localiser les addresse IP (afin que le chargement de la carte se fasse centré là où l'utilisateur est). Vous pouvez créer un compte ici : https://www.maxmind.com/en/geolite2/signup"
+    type = "string"
+    optional = true
+
+    [install.maxmind_license_key]
+    ask.en = "Fill in your maxmind license key"
+    ask.fr = "Remplissez ici votre clé de license maxmind"
+    help.en = "License key associated to the maxmind user ID you specified."
+    help.fr = "La clé de license associée à l'utilisateur maxmind que vous avez spécifié."
+    type = "string"
+    optional = true
+
+    [install.user_agent]
+    ask.en = "User-Agent header"
+    ask.fr = "Entête User-Agent facilmap"
+    help.en = "HTTP requests made by the backend will send this User-Agent header. Fill here the URL facilmap will have and your e-mail address."
+    help.fr = "Les requêtes faites par le serveur enveront cette entête User-Agent. Remplissez ici l'URL de votre instance facilmap et votre adresse email."
+    type = "string"
+    example = "FacilMap (https://facilmapdomain.tld/, webmaster@example.org)"
+
+[resources]
+
+    [resources.ports]
+    
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "mariadb-server"
+
+    [resources.database]
+    type = "mysql"
