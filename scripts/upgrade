@@ -10,10 +10,11 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# CHECK VERSION
+# UPGRADE DEPENDENCIES
 #=================================================
+ynh_script_progression --message="Upgrading NodeJS..." --weight=10
 
-upgrade_type=$(ynh_check_app_version_changed)
+ynh_install_nodejs --nodejs_version="$nodejs_version"
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -25,37 +26,19 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
 
 #=================================================
-# NGINX CONFIGURATION
-#=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
-
-# Create a dedicated NGINX config
-ynh_add_nginx_config
-
-ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
 # SPECIFIC UPGRADE
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Install $app..." --weight=20
 
-if [ "$upgrade_type" == "UPGRADE_APP" ]
-then
-    chown -R $app $install_dir
-    pushd $install_dir
-        ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$install_dir" -g facilmap-server@"$facilmap_version" 2>/dev/null
-    popd
-fi
+pushd $install_dir
+    ynh_exec_as "$app" "$ynh_node_load_PATH" "$ynh_npm" install --prefix "$install_dir" -g facilmap-server@"$facilmap_version" 2>/dev/null
+popd
 
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
-
-# Create a dedicated systemd config
-ynh_add_systemd_config
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # UPDATE A CONFIG FILE
@@ -64,6 +47,9 @@ ynh_script_progression --message="Updating config files..." --weight=2
 
 mkdir -p "$install_dir/etc"
 ynh_add_config --template="../conf/config.env" --destination="$install_dir/etc/facilmap.env"
+
+chown -R "$app:www-data" "$install_dir/etc"
+chmod 400 "$install_dir/etc/facilmap.env"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -78,26 +64,25 @@ chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
 
 #=================================================
-# SETUP LOGROTATE
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading logrotate configuration..." --weight=1
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+
+# Create a dedicated NGINX config
+ynh_add_nginx_config
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
+yunohost service add "$app" --description="Collaborative maps and routing" --log="/var/log/$app/$app.log"
 
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
-
-yunohost service add $app --description="Collaborative maps and routing" --log="/var/log/$app/$app.log"
-
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=5
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Server started"
+ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Server started"
 
 #=================================================
 # END OF SCRIPT
