@@ -42,7 +42,7 @@ mkdir -p $install_dir
 chown -R $app $install_dir
 
 pushd $install_dir
-	ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$install_dir" -g facilmap-server@"$facilmap_version" 2>/dev/null
+    ynh_exec_as $app "$ynh_node_load_PATH" $ynh_npm install --prefix "$install_dir" -g facilmap-server@"$facilmap_version" 2>/dev/null
 popd
 
 chmod 750 "$install_dir"
