@@ -87,7 +87,7 @@ yunohost service add "$app" --description="Collaborative maps and routing" --log
 
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
-s
+
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
