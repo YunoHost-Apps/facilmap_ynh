@@ -39,7 +39,7 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Install $app..." --weight=20
+ynh_script_progression --message="Install $app..." --weight=10
 
 pushd "$install_dir"
     ynh_use_nodejs
