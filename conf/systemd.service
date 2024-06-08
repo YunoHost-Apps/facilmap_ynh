@@ -11,7 +11,7 @@ Environment=DOTENV_CONFIG_PATH=__INSTALL_DIR__/etc/facilmap.env
 Environment="__YNH_NODE_LOAD_PATH__"
 #ExecStart=__INSTALL_DIR__/bin/facilmap-server
 WorkingDirectory=__INSTALL_DIR__/server
-ExecStart=/usr/bin/yarn serve
+ExecStart=/usr/bin/yarn server
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=__APP__
