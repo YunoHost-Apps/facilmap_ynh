@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Facilmap
+# YunoHost 上的 Facilmap
 
 [![集成程度](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![工作状态](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
 
@@ -18,7 +18,7 @@
 
 Collaborative maps and routing with a straightforward interface
 
-**分发版本：** 3.4.0~ynh3
+**分发版本：** 4.1.1~ynh1
 
 **演示：** <https://facilmap.org/>
 

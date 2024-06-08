@@ -19,7 +19,7 @@ Il NE doit PAS être modifié à la main.
 Cartes et itinéraires collaboratifs avec une interface simple.
 
 
-**Version incluse :** 3.4.0~ynh3
+**Version incluse :** 4.1.1~ynh1
 
 **Démo :** <https://facilmap.org/>
 

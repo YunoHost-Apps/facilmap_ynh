@@ -26,14 +26,25 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=1
 ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
 
 #=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Upgrading source files..." --weight=1
+
+ynh_setup_source --dest_dir="$install_dir"
+
+chown -R "$app:www-data" "$install_dir"
+
+#=================================================
 # SPECIFIC UPGRADE
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Install $app..." --weight=20
+ynh_script_progression --message="Install $app..." --weight=10
 
-pushd $install_dir
-    ynh_exec_as "$app" "$ynh_node_load_PATH" "$ynh_npm" install --prefix "$install_dir" -g facilmap-server@"$facilmap_version" 2>/dev/null
+pushd "$install_dir"
+    ynh_use_nodejs
+    ynh_exec_warn_less env $ynh_node_load_PATH yarn install
+    ynh_exec_warn_less env $ynh_node_load_PATH yarn build   
 popd
 
 chmod 750 "$install_dir"
@@ -45,11 +56,10 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression --message="Updating config files..." --weight=2
 
-mkdir -p "$install_dir/etc"
-ynh_add_config --template="../conf/config.env" --destination="$install_dir/etc/facilmap.env"
+ynh_add_config --template="config.env" --destination="$install_dir/config.env"
 
-chown -R "$app:www-data" "$install_dir/etc"
-chmod 400 "$install_dir/etc/facilmap.env"
+chown -R "$app:www-data" "$install_dir/config.env"
+chmod 400 "$install_dir/config.env"
 
 #=================================================
 # GENERIC FINALIZATION
@@ -77,6 +87,7 @@ yunohost service add "$app" --description="Collaborative maps and routing" --log
 
 # Use logrotate to manage app-specific logfile(s)
 ynh_use_logrotate --non-append
+
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================

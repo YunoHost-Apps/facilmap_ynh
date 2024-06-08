@@ -7,7 +7,7 @@ name = "Facilmap"
 description.en = "Collaborative maps and routing with a straightforward interface"
 description.fr = "Carte collaborative avec une interface simple et pratique"
 
-version = "3.4.0~ynh3"
+version = "4.1.1~ynh1"
 
 maintainers = ["Squeak"]
 
@@ -23,11 +23,14 @@ code = "https://github.com/FacilMap/facilmap"
 yunohost = ">= 11.2"
 architectures = "all"
 multi_instance = true
+
 ldap = false
+
 sso = false
-disk = "50M"
-ram.build = "50M"
-ram.runtime = "50M"
+
+disk = "1000M"
+ram.build = "2000M"
+ram.runtime = "450M"
 
 [install]
     [install.domain]
@@ -81,6 +84,13 @@ ram.runtime = "50M"
 
 [resources]
 
+    [resources.sources]
+
+    [resources.sources.main]
+    url = "https://github.com/FacilMap/facilmap/archive/refs/tags/v4.1.1.tar.gz"
+    sha256 = "72cf9f7fbc6e9d5c73f7c1af02be63d2c5a99d13cf89c96af834db6004c89cf6"
+    autoupdate.strategy = "latest_github_tag"
+
     [resources.ports]
 
     [resources.system_user]
@@ -92,6 +102,10 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = "mariadb-server"
+
+    extras.yarn.repo = "deb https://dl.yarnpkg.com/debian/ stable main"
+    extras.yarn.key = "https://dl.yarnpkg.com/debian/pubkey.gpg"
+    extras.yarn.packages = "yarn"
 
     [resources.database]
     type = "mysql"
