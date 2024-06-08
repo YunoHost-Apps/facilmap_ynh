@@ -6,7 +6,7 @@
 
 nodejs_version=20
 
-facilmap_version=3.4.0
+facilmap_version=4.1.1
 
 #=================================================
 # PERSONAL HELPERS
