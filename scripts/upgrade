@@ -42,6 +42,7 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression --message="Install $app..." --weight=20
 
 pushd "$install_dir"
+    ynh_use_nodejs
     ynh_exec_warn_less env $ynh_node_load_PATH yarn install
     ynh_exec_warn_less env $ynh_node_load_PATH yarn build   
 popd
