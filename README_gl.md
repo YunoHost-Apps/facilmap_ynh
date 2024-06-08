@@ -18,7 +18,7 @@ NON debe editarse manualmente.
 
 Collaborative maps and routing with a straightforward interface
 
-**Versión proporcionada:** 3.4.0~ynh3
+**Versión proporcionada:** 4.1.1~ynh1
 
 **Demo:** <https://facilmap.org/>
 

@@ -24,8 +24,6 @@ ynh_script_progression --message="Restoring the app main directory..." --weight=
 
 ynh_restore_file --origin_path="$install_dir"
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
@@ -33,7 +31,6 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 ynh_script_progression --message="Restoring the MySQL database..." --weight=1
 
-# echo "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 ynh_mysql_connect_as --user="$db_user" --password="$db_pwd" --database="$db_name" < ./db.sql
 
 #=================================================
