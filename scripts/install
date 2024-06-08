@@ -37,7 +37,7 @@ ynh_mysql_execute_as_root --database="$db_name" --sql="ALTER DATABASE $db_name C
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Building with NodeJS..." --weight=10
+ynh_script_progression --message="Building $app..." --weight=10
 
 pushd "$install_dir"
     ynh_use_nodejs
