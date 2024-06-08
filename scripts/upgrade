@@ -46,7 +46,7 @@ chown -R "$app:www-data" "$install_dir"
 ynh_script_progression --message="Updating config files..." --weight=2
 
 mkdir -p "$install_dir/etc"
-ynh_add_config --template="../conf/config.env" --destination="$install_dir/etc/facilmap.env"
+ynh_add_config --template="config.env" --destination="$install_dir/etc/facilmap.env"
 
 chown -R "$app:www-data" "$install_dir/etc"
 chmod 400 "$install_dir/etc/facilmap.env"
