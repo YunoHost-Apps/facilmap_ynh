@@ -18,7 +18,7 @@ EZ editatu eskuz.
 
 Collaborative maps and routing with a straightforward interface
 
-**Paketatutako bertsioa:** 3.4.0~ynh3
+**Paketatutako bertsioa:** 4.1.1~ynh1
 
 **Demoa:** <https://facilmap.org/>
 
