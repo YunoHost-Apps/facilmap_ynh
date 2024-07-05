@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Facilmap YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/facilmap.svg)](https://ci-apps.yunohost.org/ci/apps/facilmap/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
 
 [![Instalatu Facilmap YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
