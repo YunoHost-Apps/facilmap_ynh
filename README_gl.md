@@ -5,7 +5,7 @@ NON debe editarse manualmente.
 
 # Facilmap para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/facilmap.svg)](https://dash.yunohost.org/appci/app/facilmap) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/facilmap.svg)](https://ci-apps.yunohost.org/ci/apps/facilmap/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/facilmap.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/facilmap.maintain.svg)
 
 [![Instalar Facilmap con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=facilmap)
 
