@@ -18,7 +18,7 @@
 
 Collaborative maps and routing with a straightforward interface
 
-**分发版本：** 4.1.1~ynh1
+**分发版本：** 4.1.2~ynh1
 
 **演示：** <https://facilmap.org/>
 
