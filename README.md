@@ -11,14 +11,14 @@ It shall NOT be edited by hand.
 
 *[Read this README in other languages.](./ALL_README.md)*
 
-> *This package allows you to install Facilmap quickly and simply on a YunoHost server.*  
+> *This package allows you to install Facilmap quickly and simply on a YunoHost server.*
 > *If you don't have YunoHost, please consult [the guide](https://yunohost.org/install) to learn how to install it.*
 
 ## Overview
 
 Collaborative maps and routing with a straightforward interface
 
-**Shipped version:** 4.1.1~ynh1
+**Shipped version:** 4.1.2~ynh1
 
 **Demo:** <https://facilmap.org/>
 
