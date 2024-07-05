@@ -11,7 +11,7 @@ No se debe editar a mano.
 
 *[Leer este README en otros idiomas.](./ALL_README.md)*
 
-> *Este paquete le permite instalarFacilmap rapidamente y simplement en un servidor YunoHost.*
+> *Este paquete le permite instalarFacilmap rapidamente y simplement en un servidor YunoHost.*  
 > *Si no tiene YunoHost, visita [the guide](https://yunohost.org/install) para aprender como instalarla.*
 
 ## Descripción general

@@ -11,7 +11,7 @@
 
 *[阅读此 README 的其它语言版本。](./ALL_README.md)*
 
-> *通过此软件包，您可以在 YunoHost 服务器上快速、简单地安装 Facilmap。*
+> *通过此软件包，您可以在 YunoHost 服务器上快速、简单地安装 Facilmap。*  
 > *如果您还没有 YunoHost，请参阅[指南](https://yunohost.org/install)了解如何安装它。*
 
 ## 概况
