@@ -20,7 +20,7 @@ userdoc = "https://docs.facilmap.org/users/"
 code = "https://github.com/FacilMap/facilmap"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 12.1.17"
 architectures = "all"
 multi_instance = true
 
@@ -109,3 +109,6 @@ ram.runtime = "450M"
 
     [resources.database]
     type = "mysql"
+
+    [resources.nodejs]
+    version = "20"

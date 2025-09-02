@@ -6,15 +6,15 @@
 # IMPORT GENERIC HELPERS
 #=================================================
 
-source _common.sh
+
 source /usr/share/yunohost/helpers
 
 #=================================================
 # INSTALL DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=6
+#REMOVEME? ynh_script_progression --message="Installing NodeJS..." --weight=6
 
-ynh_install_nodejs --nodejs_version=$nodejs_version
+#REMOVEME? ynh_install_nodejs --#REMOVEME? nodejs_version=$nodejs_version
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -40,7 +40,7 @@ ynh_mysql_execute_as_root --database="$db_name" --sql="ALTER DATABASE $db_name C
 ynh_script_progression --message="Building $app..." --weight=10
 
 pushd "$install_dir"
-    ynh_use_nodejs
+    #REMOVEME? ynh_use_nodejs
     ynh_exec_warn_less env $ynh_node_load_PATH yarn install
     ynh_exec_warn_less env $ynh_node_load_PATH yarn build:frontend:app
     ynh_exec_warn_less env $ynh_node_load_PATH yarn build:server
