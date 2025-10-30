@@ -1,49 +1,33 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
-source _common.sh
 source /usr/share/yunohost/helpers
-
-#=================================================
-# INSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Installing NodeJS..." --weight=6
-
-ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
+ynh_script_progression "Setting up source files..."
 
 ynh_setup_source --dest_dir="$install_dir"
-
-chown -R "$app:www-data" "$install_dir"
 
 #=================================================
 # CREATE A MYSQL DATABASE
 #=================================================
-ynh_script_progression --message="Configuring a MySQL database..." --weight=2
+ynh_script_progression "Configuring a MySQL database..."
 
-ynh_mysql_execute_as_root --database="$db_name" --sql="ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
+ynh_psql_db_shell  <<< "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 
 #=================================================
 # SPECIFIC SETUP
 #=================================================
 # BUILD NODE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Building $app..." --weight=10
+ynh_script_progression "Building $app..."
 
 pushd "$install_dir"
-    ynh_use_nodejs
-    ynh_exec_warn_less env $ynh_node_load_PATH yarn install
-    ynh_exec_warn_less env $ynh_node_load_PATH yarn build:frontend:app
-    ynh_exec_warn_less env $ynh_node_load_PATH yarn build:server
+
+    ynh_hide_warnings env yarn install
+    ynh_hide_warnings env yarn build:frontend:app
+    ynh_hide_warnings env yarn build:server
 popd
 
 chmod 750 "$install_dir"
@@ -53,38 +37,37 @@ chown -R "$app:www-data" "$install_dir"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding configuration..." --weight=2
+ynh_script_progression "Adding configuration..."
 
-ynh_add_config --template="config.env" --destination="$install_dir/config.env"
+ynh_config_add --template="config.env" --destination="$install_dir/config.env"
 
 chown -R "$app:www-data" "$install_dir/config.env"
-chmod 400 "$install_dir/config.env"
 
 #=================================================
 # SYSTEM CONFIGURATION
 #=================================================
-ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
+ynh_script_progression "Adding system configurations related to $app..."
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 yunohost service add "$app" --description="Collaborative maps and routing" --log="/var/log/$app/$app.log"
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate
+ynh_config_add_logrotate
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=7
+ynh_script_progression "Starting $app's systemd service..."
 
 # Start a systemd service
-ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Server started"
+ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Server started"
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression "Installation of $app completed"
