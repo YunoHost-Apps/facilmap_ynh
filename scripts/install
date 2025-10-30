@@ -14,7 +14,7 @@ ynh_setup_source --dest_dir="$install_dir"
 #=================================================
 ynh_script_progression "Configuring a MySQL database..."
 
-ynh_psql_db_shell  <<< "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
+ynh_mysql_db_shell  <<< "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci"
 
 #=================================================
 # SPECIFIC SETUP
@@ -24,7 +24,6 @@ ynh_psql_db_shell  <<< "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE ut
 ynh_script_progression "Building $app..."
 
 pushd "$install_dir"
-
     ynh_hide_warnings env yarn install
     ynh_hide_warnings env yarn build:frontend:app
     ynh_hide_warnings env yarn build:server
