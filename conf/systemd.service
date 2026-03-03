@@ -10,7 +10,7 @@ Environment=NODE_ENV=production
 Environment=DOTENV_CONFIG_PATH=__INSTALL_DIR__/config.env
 Environment="PATH=__PATH_WITH_NODEJS__"
 WorkingDirectory=__INSTALL_DIR__/server
-ExecStart=/usr/bin/yarn server
+ExecStart=__NODEJS_DIR__/corepack yarn server
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=__APP__
