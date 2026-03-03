@@ -24,7 +24,7 @@ ynh_mysql_db_shell  <<< "ALTER DATABASE $db_name CHARACTER SET utf8mb4 COLLATE u
 ynh_script_progression "Building $app..."
 
 pushd "$install_dir"
-    ynh_hide_warnings corepack enable && corepack prepare yarn@3.8.7 --activate
+    ynh_hide_warnings corepack enable && corepack prepare yarn@3.6.3 --activate
     ynh_hide_warnings env yarn install
     ynh_hide_warnings env yarn build:frontend:app
     ynh_hide_warnings env yarn build:server
