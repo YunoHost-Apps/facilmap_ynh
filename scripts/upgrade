@@ -22,7 +22,7 @@ ynh_setup_source --dest_dir="$install_dir"
 ynh_script_progression "Install $app..."
 
 pushd "$install_dir"
-    ynh_hide_warnings corepack enable && corepack prepare yarn@1.22.20 --activate
+    ynh_hide_warnings corepack enable && corepack prepare yarn@4.13 --activate
     ynh_hide_warnings env yarn install
     ynh_hide_warnings env yarn build:frontend:app
     ynh_hide_warnings env yarn build:server
